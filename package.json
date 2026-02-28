@@ -1,0 +1,27 @@
+{
+  "name": "vidya",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@google/genai": "^1.43.0",
+    "dotenv": "^17.3.1",
+    "hono": "^4.12.3",
+    "mic": "^2.1.2",
+    "pcm-player": "^0.0.18"
+  },
+  "scripts": {
+    "agent": "bun run src/agent.ts",
+    "dev": "bun run src/index.ts",
+    "start": "bun run src/index.ts"
+  },
+  "optionalDependencies": {
+    "speaker": "^0.5.5"
+  }
+}
