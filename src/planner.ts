@@ -592,6 +592,9 @@ export function prepareSession(blueprint: GoalBlueprint, sessionId: string): Pre
   if (!session) {
     throw new Error('Session not found');
   }
+  if (session.status === 'locked') {
+    throw new Error('Session is locked until previous sessions are completed');
+  }
 
   const phase = blueprint.phases.find((item) => item.sessionIds.includes(session.id));
   const previousSession = blueprint.sessions.find((item) => item.index === session.index - 1);
@@ -652,6 +655,9 @@ export function completeSession(
   const session = updatedBlueprint.sessions.find((item) => item.id === sessionId);
   if (!session) {
     throw new Error('Session not found');
+  }
+  if (session.status === 'locked') {
+    throw new Error('Session is locked until previous sessions are completed');
   }
 
   const questionResults = session.knowledgeCheck.questions.map((question) => {
